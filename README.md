@@ -22,10 +22,12 @@ Copyright & License
 Code
 ----
 Copyright (c) 2012 [jareiko](https://github.com/jareiko)
-and released under the [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html)
+Released under the [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html)
 
 Textures
 --------
+Copyright Emil Persson, aka Humus (http://www.humus.name)
+licensed under the Creative Commons Attribution 3.0 Unported License.
 
 
 Directories with mixed ownership and licensing:
