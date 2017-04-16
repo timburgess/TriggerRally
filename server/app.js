@@ -6,9 +6,9 @@
 
 var express = require('express');
 var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google').Strategy;
-var TwitterStrategy = require('passport-twitter').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
+//var GoogleStrategy = require('passport-google').Strategy;
+//var TwitterStrategy = require('passport-twitter').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 
 var config = require('./config');
@@ -31,7 +31,7 @@ console.log('Base directory: ' + __dirname);
 // Global app object is accessible from other modules.
 var app = module.exports = express.createServer();
 
-var PORT = process.env.PORT || 80;
+var PORT = process.env.PORT || 8080;
 var DOMAIN = process.env.DOMAIN || 'triggerrally.com';
 var URL_PREFIX = 'http://' + DOMAIN;
 
@@ -106,7 +106,6 @@ var authenticationSuccessful = function(req, res) {
   */
 };
 
-/*
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
@@ -120,8 +119,8 @@ passport.use(new LocalStrategy({
     });
   }
 ));
-*/
 
+/*
 passport.use(new FacebookStrategy({
     clientID: config.FACEBOOK_APP_ID,
     clientSecret: config.FACEBOOK_APP_SECRET,
@@ -160,7 +159,7 @@ passport.use(new TwitterStrategy({
     authenticateUser(profile, done);
   }
 ));
-
+*/
 passport.serializeUser(function(userPassport, done) {
   done(null, userPassport.id);
 });
@@ -322,29 +321,31 @@ app.get('/run/:idRun/replay', loadUrlRun, routes.runReplay);
 app.get('/x/:idTrack/:idCar/drive', loadUrlTrack, loadUrlCar, routes.drive);
 app.get('/x/:idTrack/:idCar/top', loadUrlTrack, loadUrlCar, routes.top);  // TODO: parallel load
 
-app.post('/ping', routes.ping);
+app.get('/x/foodrive', routes.drive);
 
+app.post('/ping', routes.ping);
+/*
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', 
+app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login' }),
     authenticationSuccessful);
 
 app.get('/auth/google', passport.authenticate('google'));
-app.get('/auth/google/return', 
+app.get('/auth/google/return',
     passport.authenticate('google', { failureRedirect: '/login' }),
     authenticationSuccessful);
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback', 
+app.get('/auth/twitter/callback',
     passport.authenticate('twitter', { failureRedirect: '/login' }),
     authenticationSuccessful);
+*/
 
-/*
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/login?status=failed' }),
     authenticationSuccessful
 );
-*/
+
 
 app.get('/logout', function(req, res){
   req.logOut();
@@ -358,4 +359,4 @@ app.get('/drive', function(req, res) {
 });
 
 app.listen(PORT);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log("Express server listening on port %d in %s mode", PORT, app.settings.env);
