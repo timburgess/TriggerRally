@@ -4,8 +4,8 @@
 #LEVEL=SIMPLE_OPTIMIZATIONS
 LEVEL=WHITESPACE_ONLY
 
-java -jar $HOME/src/closure-compiler/compiler.jar \
-  --compilation_level $LEVEL \
+#java -jar $HOME/src/closure-compiler/compiler.jar \
+closure-compiler --compilation_level $LEVEL \
   --js=server/shared/LFIB4.js \
   --js=server/shared/util.js \
   --js=server/shared/pubsub.js \
@@ -21,5 +21,5 @@ java -jar $HOME/src/closure-compiler/compiler.jar \
   --js=src/audio.js \
   --js=src/car.js \
   --js=src/drive.js \
-  --js_output_file=server/public/js/trigger.js
+  --js_output_file=src/trigger.js
 
